@@ -4,6 +4,6 @@ import { createContactEndpoint } from '../controllers/contactController';
 
 const router = Router();
 
-router.post("/", createContactEndpoint);
+router.post('/create-contact', createContactEndpoint);
 
 export default router;
