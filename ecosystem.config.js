@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
       {
-        name: "fireberry-leader",
+        name: "Fireberry-leader",
         script: './dist/server.js',
         env: {
           NODE_ENV: 'development',
