@@ -5,7 +5,7 @@ import logger from '../logger';
 // Endpoint to handle combined request
 export const createContactEndpoint = async (req: Request, res: Response): Promise<any> => {
   try {
-    const { firstname, telephone1, emailaddress1, productId, name, phone, origin, status } = req.body;
+    const { firstname, telephone1, emailaddress1, productId, name, phone, origin, status, leaderId } = req.body;
 
     // Validate required fields
     if (!firstname || !telephone1) {
@@ -38,6 +38,7 @@ export const createContactEndpoint = async (req: Request, res: Response): Promis
       {
         pcfsystemfield100: productId, // Product
         name: name, // Name
+        pcfLeaderId: leaderId, // Leader ID
         pcfsystemfield102: status || 1, // Status
         pcfsystemfield106: phone, // Contact phone
         pcfOrigin: origin || 1, // Constant 1
@@ -45,7 +46,7 @@ export const createContactEndpoint = async (req: Request, res: Response): Promis
       },
       {
         headers: {
-          tokenid: 'b6405927-2290-4993-9b78-79e5f94d358e',
+          tokenid: process.env.FIREBERRY_TOKEN,
           'Content-Type': 'application/json',
         },
       },
