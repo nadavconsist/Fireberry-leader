@@ -9,6 +9,7 @@ export const createContactEndpoint = async (req: Request, res: Response): Promis
 
     // Validate required fields
     if (!firstname || !telephone1) {
+      logger.warn('Missing required fields: firstname or telephone1');
       return res.status(400).json({ error: 'Missing required fields: firstname or telephone1' });
     }
 
@@ -27,7 +28,7 @@ export const createContactEndpoint = async (req: Request, res: Response): Promis
         },
       },
     );
-    logger.info('Contact created:', contactResponse.data);
+    logger.info(`Contact created: ${JSON.stringify(contactResponse.data)}`);
 
     // Extract contactId from the response
     const contactId = contactResponse.data.data.Record.contactid;
@@ -51,7 +52,7 @@ export const createContactEndpoint = async (req: Request, res: Response): Promis
         },
       },
     );
-    logger.info(`Second request response:, ${JSON.stringify(secondResponse.data)}`);
+    logger.info(`Second request response:, ${secondResponse.data}`);
 
     // Flatten the response
     const flattenedResponse = {

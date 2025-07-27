@@ -15,6 +15,10 @@ app.use(cors());
 app.use(express.json());
 // app.all('*', authenticateIP);
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ message: 'Server is healthy' });
+});
+
 app.use("/api", authenticateToken, router);
 
 app.use(errorMiddleware);
